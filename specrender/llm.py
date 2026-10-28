@@ -15,6 +15,14 @@ import re
 
 import requests
 
+# Load KEY=value lines from specrender/.env; real env vars win.
+_ENV = os.path.join(os.path.dirname(__file__), ".env")
+if os.path.exists(_ENV):
+    for _line in open(_ENV, encoding="utf-8"):
+        _k, _, _v = _line.strip().partition("=")
+        if _k and not _k.startswith("#") and _v:
+            os.environ.setdefault(_k.strip(), _v.strip().strip('"\''))
+
 DEFAULT_MODELS = {
     "anthropic": "claude-haiku-5-5",
     "openai": "gpt-4o-mini",
