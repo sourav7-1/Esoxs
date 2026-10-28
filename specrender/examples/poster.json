@@ -1,0 +1,20 @@
+{
+  "kind": "poster",
+  "size": "portrait",
+  "tag": "Cheat sheet",
+  "title": "Git in *5 minutes*",
+  "subtitle": "The only commands you need for a team project.",
+  "stats": [
+    {"value": "6", "label": "commands"},
+    {"value": "1", "label": "branch per feature"},
+    {"value": "0", "label": "lost work"}
+  ],
+  "sections": [
+    {"heading": "Start", "points": ["git clone <url>", "git checkout -b feature-x"]},
+    {"heading": "Save", "points": ["git add .", "git commit -m \"message\""]},
+    {"heading": "Share", "points": ["git push origin feature-x", "Open a pull request"]},
+    {"heading": "Update", "points": ["git pull origin main", "Fix conflicts, commit again"]}
+  ],
+  "footer": "Commit small, commit often.",
+  "handle": "@yourhandle"
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+<style>
+{{ theme_css | safe }}
+{{ base_css | safe }}
+body { display: inline-block; }
+.wrap { padding: 32px 40px; background: var(--bg); display: inline-block; min-width: 400px; }
+.wrap h1 { margin: 0 0 18px; font-size: 22px; font-weight: 600; color: var(--fg); }
+pre.mermaid { margin: 0; font-family: inherit; }
+</style></head>
+<body><div class="wrap">
+{% if title %}<h1>{{ title }}</h1>{% endif %}
+<pre class="mermaid">{{ code }}</pre>
+</div></body></html>

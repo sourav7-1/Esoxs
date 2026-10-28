@@ -1,0 +1,20 @@
+%% title: Login with OTP
+sequenceDiagram
+    actor U as User
+    participant F as Frontend
+    participant A as Auth API
+    participant D as Database
+    U->>F: Enter phone number
+    F->>A: POST /otp/request
+    A->>D: Save OTP (expires in 5 min)
+    A-->>U: SMS with 6-digit code
+    U->>F: Enter code
+    F->>A: POST /otp/verify
+    A->>D: Check code + expiry
+    alt Code valid
+        A-->>F: JWT token
+        F-->>U: Logged in
+    else Wrong or expired
+        A-->>F: 401 error
+        F-->>U: Try again
+    end

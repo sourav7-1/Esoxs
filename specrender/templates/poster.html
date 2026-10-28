@@ -1,0 +1,50 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+{{ theme_css | safe }}
+{{ base_css | safe }}
+.poster {
+  width: {{ w }}px; min-height: {{ h }}px; position: relative; overflow: hidden;
+  padding: 72px 72px 64px; display: flex; flex-direction: column; gap: 34px;
+  background: var(--bg);
+}
+.blob { position: absolute; border-radius: 50%; filter: blur(10px); opacity: .16; z-index: 0; }
+.b1 { width: 520px; height: 520px; background: var(--accent); top: -180px; right: -160px; }
+.b2 { width: 380px; height: 380px; background: var(--accent2); bottom: -140px; left: -120px; }
+.poster > *:not(.blob) { position: relative; z-index: 1; }
+.tag { align-self: flex-start; background: var(--accent); color: #fff; font-weight: 700; font-size: 18px;
+       padding: 8px 18px; border-radius: 999px; letter-spacing: .06em; text-transform: uppercase; }
+h1 { font-size: {{ title_size }}px; line-height: 1.05; margin: 0; font-weight: 900; letter-spacing: -.02em; }
+h1 em { font-style: normal; color: var(--accent); }
+.sub { font-size: 26px; line-height: 1.4; color: var(--muted); margin: -14px 0 0; max-width: 90%; }
+.stats { display: grid; grid-template-columns: repeat({{ stats|length }}, 1fr); gap: 18px; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 22px 24px; }
+.stat b { display: block; font-size: 46px; font-weight: 900; color: var(--accent); line-height: 1; }
+.stat span { display: block; margin-top: 8px; font-size: 18px; color: var(--muted); }
+.sections { display: grid; grid-template-columns: {{ '1fr 1fr' if two_col else '1fr' }}; gap: 20px; flex: 1; align-content: start; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 26px 28px; }
+.card h2 { margin: 0 0 12px; font-size: 26px; display: flex; align-items: center; gap: 12px; }
+.card h2 i { font-style: normal; flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--accent);
+             color: #fff; font-size: 19px; display: grid; place-items: center; }
+.card ul { margin: 0; padding-left: 22px; }
+.card li { font-size: 20px; line-height: 1.45; margin: 6px 0; }
+.card li::marker { color: var(--accent); }
+footer { display: flex; justify-content: space-between; align-items: center; font-size: 18px; color: var(--muted);
+         border-top: 2px solid var(--border); padding-top: 20px; }
+footer b { color: var(--accent); }
+</style></head>
+<body>
+<div class="poster">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  {% if tag %}<div class="tag">{{ tag }}</div>{% endif %}
+  <h1>{{ title_html | safe }}</h1>
+  {% if subtitle %}<p class="sub">{{ subtitle }}</p>{% endif %}
+  {% if stats %}<div class="stats">{% for s in stats %}<div class="stat"><b>{{ s.value }}</b><span>{{ s.label }}</span></div>{% endfor %}</div>{% endif %}
+  {% if sections %}<div class="sections">
+    {% for s in sections %}<div class="card"><h2><i>{{ loop.index }}</i>{{ s.heading }}</h2>
+      <ul>{% for p in s.points %}<li>{{ p }}</li>{% endfor %}</ul></div>{% endfor %}
+  </div>{% endif %}
+  {% if footer or handle %}<footer><span>{{ footer }}</span><b>{{ handle }}</b></footer>{% endif %}
+</div>
+</body></html>

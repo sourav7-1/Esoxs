@@ -1,0 +1,12 @@
+{
+  "kind": "chart",
+  "type": "bar",
+  "title": "Weekly study hours",
+  "labels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  "series": [
+    {"name": "Networks", "values": [2, 1.5, 3, 2, 1, 4, 3]},
+    {"name": "DBMS", "values": [1, 2, 1, 2.5, 2, 2, 1]}
+  ],
+  "unit": "h",
+  "note": "Sample data"
+}

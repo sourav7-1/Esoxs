@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Hind+Siliguri:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+{{ theme_css | safe }}
+{{ base_css | safe }}
+body { font-size: 11pt; line-height: 1.6; }
+.cover { padding: 0 0 18px; margin-bottom: 22px; border-bottom: 3px solid var(--accent); }
+.cover .kicker { color: var(--accent); font-weight: 600; font-size: 9pt; letter-spacing: .12em; text-transform: uppercase; }
+.cover h1 { font-size: 26pt; line-height: 1.15; margin: 6px 0 6px; font-weight: 800; }
+.cover .subtitle { font-size: 13pt; color: var(--muted); margin: 0; }
+.cover .meta { margin-top: 10px; font-size: 9pt; color: var(--muted); }
+article h1 { font-size: 20pt; margin: 26px 0 8px; }
+article h2 { font-size: 15pt; margin: 26px 0 10px; padding-left: 10px; border-left: 4px solid var(--accent); break-after: avoid; }
+article h3 { font-size: 12pt; margin: 18px 0 6px; color: var(--accent); break-after: avoid; }
+article p { margin: 0 0 10px; }
+article ul, article ol { margin: 0 0 10px; padding-left: 22px; }
+article li { margin: 3px 0; }
+article a { color: var(--accent); }
+article table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 10pt; break-inside: avoid; }
+article th { background: var(--accent); color: #fff; text-align: left; padding: 7px 9px; }
+article td { padding: 6px 9px; border-bottom: 1px solid var(--border); }
+article tr:nth-child(even) td { background: var(--card); }
+article code { font-family: "JetBrains Mono", Consolas, monospace; font-size: 9.5pt; background: var(--card); padding: 1px 5px; border-radius: 4px; }
+article pre { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; overflow: hidden; white-space: pre-wrap; break-inside: avoid; }
+article pre code { background: none; padding: 0; }
+article blockquote { margin: 12px 0; padding: 10px 14px; background: var(--card); border-left: 4px solid var(--accent2); border-radius: 0 8px 8px 0; color: var(--fg); }
+article blockquote p:last-child { margin: 0; }
+article hr { border: 0; border-top: 1px solid var(--border); margin: 20px 0; }
+article pre.mermaid { background: none; border: 0; text-align: center; padding: 6px 0; }
+article pre.mermaid svg { max-width: 100%; height: auto; }
+</style></head>
+<body>
+{% if meta.title %}
+<header class="cover">
+  {% if meta.kicker %}<div class="kicker">{{ meta.kicker }}</div>{% endif %}
+  <h1>{{ meta.title }}</h1>
+  {% if meta.subtitle %}<p class="subtitle">{{ meta.subtitle }}</p>{% endif %}
+  {% if meta.author or meta.date %}<div class="meta">{{ meta.author }}{% if meta.author and meta.date %} · {% endif %}{{ meta.date }}</div>{% endif %}
+</header>
+{% endif %}
+<article>{{ body | safe }}</article>
+</body></html>
